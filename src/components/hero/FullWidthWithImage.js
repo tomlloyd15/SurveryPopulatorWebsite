@@ -34,7 +34,7 @@ const Actions = styled.div`
     ${tw`text-center inline-block w-full sm:w-48 py-4 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`}
   }
   .primaryAction {
-    ${tw`bg-primary-500 text-gray-100 hover:bg-primary-700`}
+    ${tw`bg-primary-400 text-gray-100 hover:bg-primary-500`}
   }
   .secondaryAction {
     ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
@@ -52,17 +52,17 @@ export default ({
   ],
   heading = (
     <>
-      Find Perfect Hotels
+      Find Property Details
       <wbr />
       <br />
-      <span tw="text-primary-500">anywhere you go.</span>
+      <span tw="text-primary-500">Test Website</span>
     </>
   ),
-  description = "We've been in the hotels business across the world for 5 years now. We assure you that you will always enjoy your stay with us.",
+  description = "Welcome to the Test Page",
   primaryActionUrl = "#",
   primaryActionText = "Sign Up",
   secondaryActionUrl = "#",
-  secondaryActionText = "Search Hotels"
+  secondaryActionText = "Search Properties"
 }) => {
   return (
     <Container>
