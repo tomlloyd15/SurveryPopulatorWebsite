@@ -4,7 +4,9 @@ import "tailwindcss/lib/css/preflight.css"
 import AnimationRevealPage from "helpers/AnimationRevealPage"
 import Hero from "components/hero/FullWidthWithImage"
 
+
 function App() {
+
     return (
         <AnimationRevealPage>
             <Hero />

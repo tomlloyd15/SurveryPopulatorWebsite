@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
@@ -23,10 +23,10 @@ const RightColumn = styled.div`
   background-image: url("https://images.unsplash.com/photo-1551918120-9739cb430c6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&width=1440&height=1024&q=75");
   ${tw`bg-green-500 bg-cover bg-center xl:ml-24 h-96 lg:h-auto lg:w-1/2 lg:flex-1`}
 `;
-
 const Content = tw.div`mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch`;
 const Heading = tw.h1`text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none`;
 const Paragraph = tw.p`max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose`;
+
 
 const Actions = styled.div`
   ${tw`mb-8 lg:mb-0`}
@@ -40,6 +40,9 @@ const Actions = styled.div`
     ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
   }
 `;
+
+
+
 
 export default ({
   navLinks = [
@@ -64,6 +67,22 @@ export default ({
   secondaryActionUrl = "#",
   secondaryActionText = "Search Properties"
 }) => {
+
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/")
+        .then(response => response.json())
+        .then(data => {
+          console.log("API Response:", data); // Check the API response in the console
+          setInfo(data);
+        })
+        .catch(error => {
+          console.error("API Error:", error); // Check for any errors in the console
+        });
+  }, []);
+
+
   return (
     <Container>
       <TwoColumn>
@@ -71,7 +90,7 @@ export default ({
           <StyledHeader links={navLinks} collapseBreakpointClass="sm" />
           <Content>
             <Heading>{heading}</Heading>
-            <Paragraph>{description}</Paragraph>
+            <Paragraph>{info.Hello}</Paragraph>
             <Actions>
               <a href={primaryActionUrl} className="action primaryAction">
                 {primaryActionText}
