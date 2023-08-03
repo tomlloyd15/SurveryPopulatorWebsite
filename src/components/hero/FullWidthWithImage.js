@@ -5,6 +5,9 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import Header, { LogoLink, NavLinks, NavLink as NavLinkBase } from "../headers/light.js";
 
+const FILE_URL = 'http://localhost:3000/hello.docx'
+
+
 const StyledHeader = styled(Header)`
   ${tw`justify-between`}
   ${LogoLink} {
@@ -65,7 +68,7 @@ export default ({
   primaryActionUrl = "#",
   primaryActionText = "Sign Up",
   secondaryActionUrl = "#",
-  secondaryActionText = "Search Properties"
+  secondaryActionText = "Download File"
 }) => {
 
   const [info, setInfo] = useState({});
@@ -83,6 +86,18 @@ export default ({
   }, []);
 
 
+  const downloadFileAtURL=(url, fileName)=>{
+    const aTag = document.createElement('a');
+    aTag.href=url;
+    aTag.setAttribute('download',fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+  }
+
+
+
+
   return (
     <Container>
       <TwoColumn>
@@ -95,9 +110,16 @@ export default ({
               <a href={primaryActionUrl} className="action primaryAction">
                 {primaryActionText}
               </a>
-              <a href={secondaryActionUrl} className="action secondaryAction">
+              <button className="action secondaryAction"
+                      onClick={() => {
+                      downloadFileAtURL(FILE_URL, "example_1")}}>
                 {secondaryActionText}
-              </a>
+              </button>
+              <button className="action secondaryAction"
+                      onClick={() => {
+                      downloadFileAtURL("http://127.0.0.1:8000/file", "API_Example")}}>
+                Download from API
+              </button>
             </Actions>
           </Content>
         </LeftColumn>
