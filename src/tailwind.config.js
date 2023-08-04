@@ -22,7 +22,10 @@ module.exports = {
         300: '#e1c4ff',
         400: '#d8b9ff',
         500: '#d2afff',
+        600: '#d2afff',
         700: '#d2afff',
+        800: '#d2afff',
+        900: '#d2afff',
       },
 
       secondary: {

@@ -3,6 +3,8 @@ import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
+
+
 import Header, { LogoLink, NavLinks, NavLink as NavLinkBase } from "../headers/light.js";
 
 const FILE_URL = 'http://localhost:3000/hello.docx'
@@ -86,6 +88,28 @@ export default ({
   }, []);
 
 
+  const [postResponse, setPostResponse] = useState("");
+
+  useEffect(() => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: 'BA14 9DH' })
+    };
+    fetch('http://127.0.0.1:8000/items', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          console.log("Post Request Response:", data)
+          setPostResponse(data)
+        });
+
+// empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+
+
+
   const downloadFileAtURL=(url, fileName)=>{
     const aTag = document.createElement('a');
     aTag.href=url;
@@ -106,6 +130,7 @@ export default ({
           <Content>
             <Heading>{heading}</Heading>
             <Paragraph>{info.Hello}</Paragraph>
+            <Paragraph>Post ID: {postResponse.address}</Paragraph>
             <Actions>
               <a href={primaryActionUrl} className="action primaryAction">
                 {primaryActionText}
@@ -115,7 +140,7 @@ export default ({
                       downloadFileAtURL(FILE_URL, "example_1")}}>
                 {secondaryActionText}
               </button>
-              <button className="action secondaryAction"
+              <button className="action primaryAction"
                       onClick={() => {
                       downloadFileAtURL("http://127.0.0.1:8000/file", "API_Example")}}>
                 Download from API
