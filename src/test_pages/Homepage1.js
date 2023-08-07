@@ -92,7 +92,7 @@ export default ({ roundedHeaderButton }) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({address: address, document_status: documentStatus})
       };
-      fetch('http://16.171.169.0/items', requestOptions)
+      fetch('https://16.171.169.0/items', requestOptions)
           .then(response => response.json())
           .then(data => {
             console.log("Post Request Response:", data)
@@ -133,7 +133,7 @@ export default ({ roundedHeaderButton }) => {
               documentStatus === 2 ?
               <button
                 onClick={() => {
-                  downloadFileAtURL("http://16.171.169.0/file", "API_Example")}}>
+                  downloadFileAtURL("https://16.171.169.0/file", "API_Example")}}>
                   Document Ready
               </button> : ""}
             </Actions>
