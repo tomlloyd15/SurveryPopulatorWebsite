@@ -89,6 +89,7 @@ export default ({ roundedHeaderButton }) => {
       setDocumentStatus(1)
       const requestOptions = {
         method: 'POST',
+        mode: "cors",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({address: address, document_status: documentStatus})
       };
