@@ -73,6 +73,7 @@ export default ({ roundedHeaderButton }) => {
 
 
   const downloadFileAtURL=(url, fileName)=>{
+    // Downloads file at specified URL
     const aTag = document.createElement('a');
     aTag.href=url;
     aTag.setAttribute('download',fileName);
@@ -136,7 +137,9 @@ export default ({ roundedHeaderButton }) => {
                 onClick={() => {
                   downloadFileAtURL("https://16.171.169.0/file", "API_Example")}}>
                   Document Ready
-              </button> : ""}
+              </button> :
+              documentStatus === 3 ?
+              (<button>Something Went Wrong</button>) : ""}
             </Actions>
             <Paragraph>Current: {address}</Paragraph>
             <Paragraph>Updated: {updated}</Paragraph>
